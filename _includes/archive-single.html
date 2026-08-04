@@ -6,6 +6,12 @@
   {% assign teaser = site.teaser %}
 {% endif %}
 
+{% if post.header.hover_teaser %}
+  {% capture hover_teaser %}{{ post.header.hover_teaser }}{% endcapture %}
+{% else %}
+  {% assign hover_teaser = nil %}
+{% endif %}
+
 {% if post.id %}
   {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
 {% else %}
@@ -14,22 +20,7 @@
 
 {% if post.collection == 'publications' %}
 
-<style>
-  .pub-entry {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin: 1.3rem 0 1.7rem 0;
-    border-bottom: none !important;
-  }
-
-  .pub-left {
-    width: 34%;
-    min-width: 220px;
-    max-width: 360px;
-    padding-left: 10px;
-  }
-
+  <style>
   .pub-img-box {
     position: relative !important;
     width: 100%;
@@ -40,10 +31,9 @@
   .pub-img-inner {
     overflow: hidden;
     border-radius: 0;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
     position: relative;
     width: 100%;
-    background: #fff;
   }
 
   .pub-img-base {
@@ -52,9 +42,29 @@
     display: block;
     border-radius: 0;
     object-fit: cover;
-    transform: scale(1.01);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    transform: scale(1.02);
     transform-origin: center center;
   }
+
+  .pub-img-overlay {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 5;
+    transform: scale(1.02);
+    transform-origin: center center;
+  }
+
+  .pub-img-box:hover .pub-img-overlay { opacity: 1 !important; }
+  .pub-img-box:hover .pub-img-base { opacity: 0; }
 
   .pub-badge {
     position: absolute;
@@ -66,277 +76,102 @@
     font-size: 10px;
     font-weight: 700;
     z-index: 20;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.26);
-    white-space: nowrap;
-    border-radius: 0 16px 16px 0;
-  }
-
-  .pub-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .pub-title {
-    font-size: 1.1rem;
-    margin: 0 0 10px 0;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .pub-title a {
-    text-decoration: none;
-    color: #153a72;
-  }
-
-  .pub-title a:hover {
-    color: #0275d8;
-    text-decoration: underline;
-  }
-
-  .pub-authors {
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 8px;
-    line-height: 1.45;
-  }
-
-  .pub-authors a,
-  .pub-authors .author-link {
-    color: #51a8c1;
-    text-decoration: underline;
-  }
-
-  .pub-authors .author-me-link {
-    color: #f08a00;
-    font-weight: 700;
-    text-decoration: underline;
-  }
-
-  .pub-excerpt {
-    font-size: 0.9rem;
-    color: #333;
-    margin-bottom: 15px;
-    line-height: 1.6;
-  }
-
-  .pub-bottom-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    font-size: 0.85rem;
-  }
-
-  .pub-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .pub-button {
-    text-decoration: none !important;
-    padding: 2px 8px;
-    border-radius: 3px;
-    line-height: 1.5;
-    background: #fff;
-  }
-
-  .pub-button-pdf {
-    color: #d9534f !important;
-    border: 1px solid #d9534f;
-  }
-
-  .pub-button-code {
-    color: #333 !important;
-    border: 1px solid #333;
-  }
-
-  .pub-button-project,
-  .pub-button-arxiv {
-    color: #0275d8 !important;
-    border: 1px solid #0275d8;
-  }
-
-  .pub-venue-date {
-    text-align: right;
-    color: #000;
-    font-weight: 800;
-    font-style: normal;
-    font-size: 0.9rem;
-    background-color: #f0f0f0;
-    padding: 2px 8px;
-    border-radius: 4px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
     white-space: nowrap;
   }
 
-  @media (max-width: 640px) {
-    .pub-entry {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 14px;
-    }
-
-    .pub-left {
-      width: 100%;
-      max-width: none;
-      padding-left: 0;
-    }
-
-    .pub-bottom-row {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-
-    .pub-venue-date {
-      text-align: left;
-      white-space: normal;
-    }
+  .author-me-link {
+    color: #f08a00 !important;
+    font-weight: 700;
+    text-decoration: underline !important;
   }
 </style>
 
-<div class="pub-entry">
-  <div class="pub-left">
-    {% if teaser %}
-      <div class="pub-img-box">
-        {% if post.badge %}
-          <span class="pub-badge">{{ post.badge }}</span>
-        {% endif %}
-        <div class="pub-img-inner">
-          <img src=
-            {% if teaser contains "://" %}
-              "{{ teaser }}"
-            {% else %}
-              "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+  <div class="pub-entry" style="
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      margin-bottom: {% if include.is_last %}0{% else %}0rem{% endif %};
+      border-bottom: none !important;
+  ">
+
+    <div class="pub-left" style="width: 30%; min-width: 160px; max-width: 240px; padding-left: 10px;">
+      {% if teaser %}
+        <div class="pub-img-box">
+          {% if post.badge %}
+            <span class="pub-badge">{{ post.badge }}</span>
+          {% endif %}
+
+          <div class="pub-img-inner">
+            <img src={% if teaser contains "://" %}"{{ teaser }}"{% else %}"{{ teaser | prepend: "/" | prepend: base_path }}"{% endif %}
+                alt="" class="pub-img-base">
+            {% if hover_teaser %}
+              <img src={% if hover_teaser contains "://" %}"{{ hover_teaser }}"{% else %}"{{ hover_teaser | prepend: "/" | prepend: base_path }}"{% endif %}
+                  alt="" class="pub-img-overlay">
             {% endif %}
-            alt="{{ title | strip_html }}" class="pub-img-base">
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="pub-right" style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
+
+      <h2 style="font-size: 1.1rem; margin: 0 0 10px 0; font-weight: 700; line-height: 1.2;">
+        {% if post.projecturl %}
+          <a href="{{ post.projecturl }}" style="text-decoration: none; color: #153a72;">{{ title }}</a>
+        {% elsif post.arxivurl %}
+          <a href="{{ post.arxivurl }}" style="text-decoration: none; color: #153a72;">{{ title }}</a>
+        {% elsif post.paperurl %}
+          <a href="{{ post.paperurl }}" style="text-decoration: none; color: #153a72;">{{ title }}</a>
+        {% else %}
+          <a href="{{ base_path }}{{ post.url }}" rel="permalink" style="text-decoration: none; color: #153a72;">{{ title }}</a>
+        {% endif %}
+      </h2>
+
+      {% if post.authors %}
+        <div style="font-size: 0.9rem; color: #555; margin-bottom: 8px;">
+          {{ post.authors | markdownify | remove: '<p>' | remove: '</p>' }}
+        </div>
+      {% endif %}
+
+      {% if post.excerpt %}
+        <div style="font-size: 0.9rem; color: #333; margin-bottom: 15px; line-height: 1.6;">
+          {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
+        </div>
+      {% endif %}
+
+      <div class="pub-bottom-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 0.85rem;">
+        <div class="pub-links">
+          {% if post.paperurl %} <a href="{{ post.paperurl }}" style="margin-right: 10px; text-decoration: none; color: #d9534f; border: 1px solid #d9534f; padding: 2px 6px; border-radius: 3px;">PDF</a> {% endif %}
+          {% if post.codeurl %} <a href="{{ post.codeurl }}" style="margin-right: 10px; text-decoration: none; color: #333; border: 1px solid #333; padding: 2px 6px; border-radius: 3px;">Code</a> {% endif %}
+          {% if post.projecturl %} <a href="{{ post.projecturl }}" style="margin-right: 10px; text-decoration: none; color: #0275d8; border: 1px solid #0275d8; padding: 2px 6px; border-radius: 3px;">Project Page</a> {% endif %}
+          {% if post.arxivurl %} <a href="{{ post.arxivurl }}" style="margin-right: 10px; text-decoration: none; color: #0275d8; border: 1px solid #0275d8; padding: 2px 6px; border-radius: 3px;">arXiv</a> {% endif %}
+        </div>
+
+        <div class="pub-venue-date" style="text-align: right; color: #000; font-weight: 800; font-style: normal; font-size: 0.9rem; background-color: #f0f0f0; padding: 2px 8px; border-radius: 4px;">
+          {% if post.venue %}{{ post.venue }} {% endif %}
+          {{ post.date | default: "1900-01-01" | date: "%Y-%m-%d" }}
         </div>
       </div>
-    {% endif %}
-  </div>
 
-  <div class="pub-right">
-    <h2 class="pub-title">
-      {% if post.projecturl %}
-        <a href="{{ post.projecturl }}" target="_blank">{{ title }}</a>
-      {% elsif post.arxivurl %}
-        <a href="{{ post.arxivurl }}" target="_blank">{{ title }}</a>
-      {% elsif post.paperurl %}
-        <a href="{{ post.paperurl }}" target="_blank">{{ title }}</a>
-      {% else %}
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
-      {% endif %}
-    </h2>
-
-    {% if post.authors %}
-      <div class="pub-authors">
-        {{ post.authors | markdownify | remove: '<p>' | remove: '</p>' }}
-      </div>
-    {% endif %}
-
-    {% if post.excerpt %}
-      <div class="pub-excerpt">
-        {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
-      </div>
-    {% endif %}
-
-    <div class="pub-bottom-row">
-      <div class="pub-links">
-        {% if post.paperurl %}
-          <a href="{{ post.paperurl }}" target="_blank" class="pub-button pub-button-pdf">PDF</a>
-        {% endif %}
-        {% if post.codeurl %}
-          <a href="{{ post.codeurl }}" target="_blank" class="pub-button pub-button-code">Code</a>
-        {% endif %}
-        {% if post.projecturl %}
-          <a href="{{ post.projecturl }}" target="_blank" class="pub-button pub-button-project">Project Page</a>
-        {% endif %}
-        {% if post.arxivurl %}
-          <a href="{{ post.arxivurl }}" target="_blank" class="pub-button pub-button-arxiv">arXiv</a>
-        {% endif %}
-      </div>
-
-      <div class="pub-venue-date">
-        {% if post.venue %}{{ post.venue }} {% endif %}
-        {{ post.date | default: "1900-01-01" | date: "%Y-%m-%d" }}
-      </div>
     </div>
   </div>
-</div>
 
 {% else %}
-
-<div class="{{ include.type | default: "list" }}__item">
-  <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
-    {% if include.type == "grid" and teaser %}
-      <div class="archive__item-teaser">
-        <img src=
-          {% if teaser contains "://" %}
-            "{{ teaser }}"
-          {% else %}
-            "{{ teaser | prepend: "/images/" | prepend: base_path }}"
-          {% endif %}
-          alt="">
-      </div>
-    {% endif %}
-
-    <h2 class="archive__item-title" itemprop="headline">
-      {% if post.link %}
-        <a href="{{ post.link }}">{{ title }}</a> <a href="{{ base_path }}{{ post.url }}" rel="permalink"><i class="fa fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
-      {% else %}
-        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+  <div class="{{ include.type | default: "list" }}__item">
+    <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
+      {% if include.type == "grid" and teaser %}
+        <div class="archive__item-teaser">
+          <img src={% if teaser contains "://" %}"{{ teaser }}"{% else %}"{{ teaser | prepend: "/images/" | prepend: base_path }}"{% endif %} alt="">
+        </div>
       {% endif %}
-    </h2>
-    
-    {% if post.read_time %}
-      <p class="page__meta"><i class="fa fa-clock" aria-hidden="true"></i> {% include read-time.html %}</p>
-    {% endif %}
-
-        {% if post.collection == 'teaching' %}
-          <p> {{ post.type }}, <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.collection == 'publications' %}
-          <p>Published in <i>{{ post.venue }}</i>, {{ post.date | default: "1900-01-01" | date: "%Y" }} </p>
-        {% elsif post.date %}
-         <p class="page__date"><strong><i class="fa fa-fw fa-calendar" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].date_label | default: "Published:" }}</strong> <time datetime="{{ post.date | default: "1900-01-01" | date_to_xmlschema }}">{{ post.date | default: "1900-01-01" | date: "%B %d, %Y" }}</time></p>
-        {% endif %}
-
-    {% if post.excerpt and site.read_more != 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify }}</p>
-    {% elsif post.excerpt and site.read_more == 'enabled' %}
-    <p class="archive__item-excerpt" itemprop="description"><p>{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}<strong><a href="{{ base_path }}{{ post.url }}" rel="permalink"> Read more</a></strong></p></p>
-    {% endif %}
-    
-    {% if post.citation and post.paperurl and post.slidesurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation and post.paperurl and post.slidesurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation and post.paperurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation and post.paperurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.paperurl }}">Download Paper</a></p>
-    {% elsif post.citation and post.slidesurl and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl}}">Download Bibtex</a></p>
-    {% elsif post.citation and post.slidesurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.citation and post.bibtexurl %}
-      <p>Recommended citation: {{ post.citation }}<br /><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.citation %}
-      <p>Recommended citation: {{ post.citation }}</p>
-    {% elsif post.paperurl and post.bibtexurl %}
-      <p><a href="{{ post.paperurl }}">Download Paper</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.paperurl %}
-      <p><a href="{{ post.paperurl }}">Download Paper</a></p>
-    {% elsif post.slidesurl and post.bibtexurl %}
-      <p><a href="{{ post.slidesurl }}">Download Slides</a> | <a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% elsif post.slidesurl %}
-      <p><a href="{{ post.slidesurl }}">Download Slides</a></p>
-    {% elsif post.bibtexurl %}
-      <p><a href="{{ post.bibtexurl }}">Download Bibtex</a></p>
-    {% endif %}
-
-  </article>
-</div>
-
+      <h2 class="archive__item-title" itemprop="headline">
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+      </h2>
+      {% if post.read_time %}
+        <p class="page__meta"><i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</p>
+      {% endif %}
+      {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}</p>{% endif %}
+    </article>
+  </div>
 {% endif %}
