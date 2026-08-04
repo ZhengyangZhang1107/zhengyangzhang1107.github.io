@@ -12,7 +12,7 @@ redirect_from:
 <h1 style="margin-top: 0px; border-bottom: 1px solid #f2f3f3; padding-bottom: 5px; margin-bottom: 10px;">👋 About Me</h1>
 
 <p>
-I am <strong>Zhengyang Zhang</strong>, a master's student in Electronic Information (Biomedical Engineering) at <a href="https://www.tsinghua.edu.cn/" target="_blank">Tsinghua University</a>, expected to graduate in 2027, and I received my bachelor's degrees in Electronic Information (Integrated Circuit Engineering) and Law from <a href="https://www.tju.edu.cn/" target="_blank">TJU(Tianjin University)</a>.
+I am <strong>Zhengyang Zhang</strong>, a master's student in Electronic Information (Biomedical Engineering) at <a href="https://www.tsinghua.edu.cn/" target="_blank">THU(Tsinghua University)</a>, expected to graduate in 2027, and I received my bachelor's degrees in Electronic Information (Integrated Circuit Engineering) and Law from <a href="https://www.tju.edu.cn/" target="_blank">TJU(Tianjin University)</a>.
 </p>
 
 <p>
@@ -84,7 +84,7 @@ My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vi
 
 <ul style="list-style-type: disc; padding-left: 20px; font-size: 16px; line-height: 1.6;">
   <li style="margin-bottom: 10px;">
-    <span style="font-style: italic; font-weight: bold;">2024.09 - 2027</span>, M.Eng. in Electronic Information (Biomedical Engineering) @ 
+    <span style="font-style: italic; font-weight: bold;">2024.09 - 2027.06</span>, M.Eng. in Electronic Information (Biomedical Engineering) @ 
     <a href="https://www.tsinghua.edu.cn/" target="_blank">Tsinghua University</a>.
   </li>
 
