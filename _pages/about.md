@@ -48,8 +48,8 @@ Feel free to reach out: <a href="mailto:zhengyangwudi@gmail.com">zhengyangwudi@g
 <h1 style="margin-top: 10px; border-bottom: 1px solid #f2f3f3; padding-bottom: 5px; margin-bottom: 10px;">🔥 News</h1>
 
 <ul>
+  <li><strong>2026.08:</strong> 🎉 Our paper <a href="https://arxiv.org/abs/2608.01958" target="_blank"><span style="color: #d9534f; font-weight: bold;">FAST-GS</span></a> is now available on arXiv and has been accepted by ICASSP 2026.</li>
   <li><strong>2026.07:</strong> 🎉 My personal academic website is online.</li>
-  <li><strong>2026:</strong> 🎉 <span style="color: #d9534f; font-weight: bold;">FAST-GS</span> was accepted by ICASSP 2026.</li>
   <li><strong>2025.06:</strong> I joined Huawei 2012 Lab as an algorithm research intern.</li>
 </ul>
 
