@@ -17,23 +17,23 @@ I am <strong>Zhengyang Zhang</strong>, a master's student in Electronic Informat
 
 <p>
 My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vision</span>, 
-<span style="color: #0275d8; font-weight: bold;">Agentic LLM</span>, 
-<span style="color: #5cb85c; font-weight: bold;">generative modeling</span>, 
-<span style="color: #9467bd; font-weight: bold;">dynamic scene reconstruction</span>, and 
-<span style="color: #f0ad4e; font-weight: bold;">world models</span>.
+<span style="color: #0275d8; font-weight: bold;">Generative Intelligence</span>, 
+<span style="color: #5cb85c; font-weight: bold;">World Model</span>, 
+<span style="color: #9467bd; font-weight: bold;">Multimodal Spatial Intelligence</span>, and 
+<span style="color: #f0ad4e; font-weight: bold;">MLLM & LLM & Agentic RL</span>.
 </p>
 
 <p>
-I received my bachelor's degrees in Electronic Information (Integrated Circuit Engineering) and Law from <a href="https://www.tju.edu.cn/" target="_blank">Tianjin University</a>.
+🎓 I received my bachelor's degrees in Electronic Information (Integrated Circuit Engineering) and Law from <a href="https://www.tju.edu.cn/" target="_blank">TJU(Tianjin University)</a>.
 </p>
 
 <div style="color: #d9534f; font-weight: bold; margin: 20px 0;">
-<p>🔥 I am a prospective Fall 2027 Ph.D. applicant.</p>
-<p>🔥 I am interested in research opportunities related to 3D/4D vision, Agentic LLM, generative world models, and multimodal spatial intelligence.</p>
+<p>🔥 I am actively seeking PhD position starting Fall 2027 in 3D/4D vision, world model and AIGC.</p>
+<p>🔥 I am interested in research opportunities related to 3D/4D vision, Agentic LLM, world model, generative intelligence and multimodal spatial intelligence.</p>
 </div>
 
 <p>
-Feel free to reach out: <a href="mailto:zhengyangwudi@gmail.com">zhengyangwudi@gmail.com</a>.
+🙋‍♂️ Feel free to reach out: <a href="mailto:zhengyangwudi@gmail.com">zhengyangwudi@gmail.com</a>.
 </p>
 
 <!-- <p>
