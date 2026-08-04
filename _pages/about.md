@@ -60,7 +60,7 @@ Feel free to reach out: <a href="mailto:zhengyangwudi@gmail.com">zhengyangwudi@g
 <h1 style="margin-top: 10px; border-bottom: 1px solid #f2f3f3; padding-bottom: 5px; margin-bottom: 10px;">
 📝 Publications
 <span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 8px; vertical-align: middle;">
-(* Equal Contribution)
+(* Equal Contribution, † Corresponding Authors)
 </span>
 </h1>
 

@@ -12,6 +12,262 @@
   {% assign title = post.title %}
 {% endif %}
 
+{% if post.collection == 'publications' %}
+
+<style>
+  .pub-entry {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 1.3rem 0 1.7rem 0;
+    border-bottom: none !important;
+  }
+
+  .pub-left {
+    width: 30%;
+    min-width: 160px;
+    max-width: 240px;
+    padding-left: 10px;
+  }
+
+  .pub-img-box {
+    position: relative !important;
+    width: 100%;
+    display: block;
+    line-height: 0;
+  }
+
+  .pub-img-inner {
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+    position: relative;
+    width: 100%;
+    background: #fff;
+  }
+
+  .pub-img-base {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+    object-fit: cover;
+    transform: scale(1.01);
+    transform-origin: center center;
+  }
+
+  .pub-badge {
+    position: absolute;
+    top: 20px;
+    left: -14px;
+    background-color: #003366;
+    color: #fff;
+    padding: 10px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    z-index: 20;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.26);
+    white-space: nowrap;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .pub-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .pub-title {
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .pub-title a {
+    text-decoration: none;
+    color: #153a72;
+  }
+
+  .pub-title a:hover {
+    color: #0275d8;
+    text-decoration: underline;
+  }
+
+  .pub-authors {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 8px;
+    line-height: 1.45;
+  }
+
+  .pub-authors a,
+  .pub-authors .author-link {
+    color: #51a8c1;
+    text-decoration: underline;
+  }
+
+  .pub-authors .author-me-link {
+    color: #f08a00;
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  .pub-excerpt {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+
+  .pub-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    font-size: 0.85rem;
+  }
+
+  .pub-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pub-button {
+    text-decoration: none !important;
+    padding: 2px 8px;
+    border-radius: 3px;
+    line-height: 1.5;
+    background: #fff;
+  }
+
+  .pub-button-pdf {
+    color: #d9534f !important;
+    border: 1px solid #d9534f;
+  }
+
+  .pub-button-code {
+    color: #333 !important;
+    border: 1px solid #333;
+  }
+
+  .pub-button-project,
+  .pub-button-arxiv {
+    color: #0275d8 !important;
+    border: 1px solid #0275d8;
+  }
+
+  .pub-venue-date {
+    text-align: right;
+    color: #000;
+    font-weight: 800;
+    font-style: normal;
+    font-size: 0.9rem;
+    background-color: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .pub-entry {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 14px;
+    }
+
+    .pub-left {
+      width: 100%;
+      max-width: none;
+      padding-left: 0;
+    }
+
+    .pub-bottom-row {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .pub-venue-date {
+      text-align: left;
+      white-space: normal;
+    }
+  }
+</style>
+
+<div class="pub-entry">
+  <div class="pub-left">
+    {% if teaser %}
+      <div class="pub-img-box">
+        {% if post.badge %}
+          <span class="pub-badge">{{ post.badge }}</span>
+        {% endif %}
+        <div class="pub-img-inner">
+          <img src=
+            {% if teaser contains "://" %}
+              "{{ teaser }}"
+            {% else %}
+              "{{ teaser | prepend: "/images/" | prepend: base_path }}"
+            {% endif %}
+            alt="{{ title | strip_html }}" class="pub-img-base">
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="pub-right">
+    <h2 class="pub-title">
+      {% if post.projecturl %}
+        <a href="{{ post.projecturl }}" target="_blank">{{ title }}</a>
+      {% elsif post.arxivurl %}
+        <a href="{{ post.arxivurl }}" target="_blank">{{ title }}</a>
+      {% elsif post.paperurl %}
+        <a href="{{ post.paperurl }}" target="_blank">{{ title }}</a>
+      {% else %}
+        <a href="{{ base_path }}{{ post.url }}" rel="permalink">{{ title }}</a>
+      {% endif %}
+    </h2>
+
+    {% if post.authors %}
+      <div class="pub-authors">
+        {{ post.authors | markdownify | remove: '<p>' | remove: '</p>' }}
+      </div>
+    {% endif %}
+
+    {% if post.excerpt %}
+      <div class="pub-excerpt">
+        {{ post.excerpt | markdownify | remove: '<p>' | remove: '</p>' }}
+      </div>
+    {% endif %}
+
+    <div class="pub-bottom-row">
+      <div class="pub-links">
+        {% if post.paperurl %}
+          <a href="{{ post.paperurl }}" target="_blank" class="pub-button pub-button-pdf">PDF</a>
+        {% endif %}
+        {% if post.codeurl %}
+          <a href="{{ post.codeurl }}" target="_blank" class="pub-button pub-button-code">Code</a>
+        {% endif %}
+        {% if post.projecturl %}
+          <a href="{{ post.projecturl }}" target="_blank" class="pub-button pub-button-project">Project Page</a>
+        {% endif %}
+        {% if post.arxivurl %}
+          <a href="{{ post.arxivurl }}" target="_blank" class="pub-button pub-button-arxiv">arXiv</a>
+        {% endif %}
+      </div>
+
+      <div class="pub-venue-date">
+        {% if post.venue %}{{ post.venue }} {% endif %}
+        {{ post.date | default: "1900-01-01" | date: "%Y-%m-%d" }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
 <div class="{{ include.type | default: "list" }}__item">
   <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
     {% if include.type == "grid" and teaser %}
@@ -82,3 +338,5 @@
 
   </article>
 </div>
+
+{% endif %}
