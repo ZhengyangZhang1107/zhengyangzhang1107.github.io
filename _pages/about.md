@@ -20,7 +20,7 @@ My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vi
 <span style="color: #0275d8; font-weight: bold;">Generative Intelligence</span>, 
 <span style="color: #5cb85c; font-weight: bold;">World Model</span>, 
 <span style="color: #9467bd; font-weight: bold;">Multimodal Spatial Intelligence</span>, and 
-<span style="color: #f0ad4e; font-weight: bold;">MLLM & LLM & Agentic RL</span>.
+<span style="color: #f0ad4e; font-weight: bold;">MLLM & LLM & Agentic RL</span>. Across these areas, I aim to build grounded, structured, and controllable intelligence for agents operating in dynamic real-world environments. Inspired by the organizing principles of human cognition — including perception, learning, memory, abstraction, and causal reasoning — I study how multimodal observations can be transformed into explicit, temporally coherent world states that support reliable reasoning, planning, and action, while remaining data-efficient and interpretable.
 </p>
 
 <div style="color: #d9534f; font-weight: bold; margin: 20px 0;">
