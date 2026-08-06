@@ -29,7 +29,7 @@ My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vi
 </div>
 
 <p>
-🙋‍♂️ Feel free to reach out: <a href="mailto:zhengyangwudi@gmail.com">zhengyangwudi@gmail.com</a>.
+🙋‍♂️ Feel free to reach out: <a href="mailto:zhengyangwudi@gmail.com">zhengyangwudi@gmail.com</a>, I like playing basketball, working out and swimming, and I also love playing the piano very much. Feel free to be friends with me !!!
 </p>
 
 <!-- <p>
