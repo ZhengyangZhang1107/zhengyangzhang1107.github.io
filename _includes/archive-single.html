@@ -150,7 +150,6 @@
 
         <div class="pub-venue-date" style="text-align: right; color: #000; font-weight: 800; font-style: normal; font-size: 0.9rem; background-color: #f0f0f0; padding: 2px 8px; border-radius: 4px;">
           {% if post.venue %}{{ post.venue }} {% endif %}
-          {{ post.date | default: "1900-01-01" | date: "%Y-%m-%d" }}
         </div>
       </div>
 
