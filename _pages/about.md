@@ -46,6 +46,7 @@ My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vi
 <ul>
   <li><strong>2026.08:</strong> 🎉 Our paper <a href="https://arxiv.org/abs/2608.01958" target="_blank"><span style="color: #d9534f; font-weight: bold;">FAST-GS</span></a> is now available on arXiv and has been accepted by ICASSP 2026.</li>
   <li><strong>2026.07:</strong> 🎉 My personal academic website is online.</li>
+  <li><strong>2026.04:</strong> 🎉 Our paper <a href="https://arxiv.org/abs/2604.02828" target="_blank"><span style="color: #d9534f; font-weight: bold;">NavCrafter</span></a> is available on arXiv and has been accepted by ICRA 2026.</li>
   <li><strong>2025.06:</strong> I joined Huawei 2012 Lab as an algorithm research intern.</li>
 </ul>
 
