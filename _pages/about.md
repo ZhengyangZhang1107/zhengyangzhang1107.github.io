@@ -44,39 +44,13 @@ My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vi
 <h1 style="margin-top: 10px; border-bottom: 1px solid #f2f3f3; padding-bottom: 5px; margin-bottom: 10px;">🔥 News</h1>
 
 <ul>
+  <li><strong>2026.08:</strong> I will join <strong>Meahy AI</strong> as a Generative 3D AI Intern.</li>
   <li><strong>2026.07:</strong> My personal academic website is online.</li>
   <li><strong>2026.04:</strong> 🎉 Our paper <a href="https://arxiv.org/abs/2604.12837" target="_blank"><span style="color: #d9534f; font-weight: bold;">GGD-SLAM</span></a> has been accepted by ICRA 2026.</li>
   <li><strong>2026.04:</strong> 🎉 Our paper <a href="https://arxiv.org/abs/2604.02828" target="_blank"><span style="color: #d9534f; font-weight: bold;">NavCrafter</span></a> has been accepted by ICRA 2026.</li>
   <li><strong>2026.02:</strong> 🎉 Our paper <a href="https://arxiv.org/abs/2608.01958" target="_blank"><span style="color: #d9534f; font-weight: bold;">FAST-GS</span></a> has been accepted by ICASSP 2026.</li>
   <li><strong>2025.06:</strong> I joined Huawei 2012 Lab as an algorithm research intern.</li>
 </ul>
-
-</div>
-
-<div id="publications">
-
-<h1 style="margin-top: 10px; border-bottom: 1px solid #f2f3f3; padding-bottom: 5px; margin-bottom: 10px;">
-📝 Publications
-<span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 8px; vertical-align: middle;">
-(* Equal Contribution, † Corresponding Authors)
-</span>
-</h1>
-
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
-
-</div>
-
-<div id="Honors_and_Awards">
-
-<!-- <h1 style="margin-top: 10px; border-bottom: 1px solid #f2f3f3; padding-bottom: 5px; margin-bottom: 10px;">🎖 Honors and Awards</h1>
-
-<ul style="list-style-type: disc; padding-left: 20px; font-size: 16px; line-height: 1.6;">
-  <li><strong>AAA</strong>, where.</li>
-  <li><strong>BBB</strong>, where.</li>
-  <li><strong>CCC</strong>, where.</li>
-</ul> -->
 
 </div>
 
@@ -105,6 +79,14 @@ My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vi
 <ul style="list-style-type: disc; padding-left: 20px; font-size: 16px; line-height: 1.6;">
 
   <li style="margin-bottom: 20px;">
+    <span style="font-style: italic; font-weight: bold;">2026.08 - Present</span>, Generative 3D AI Intern @
+    <strong>Meahy AI</strong>.
+    <div style="font-size: 0.95rem; color: #444; margin-top: 6px; text-align: justify;">
+      Working on generative 3D AI.
+    </div>
+  </li>
+
+  <li style="margin-bottom: 20px;">
     <span style="font-style: italic; font-weight: bold;">2025.06 - 2026.03</span>, Algorithm Research Intern @ 
     <strong>Huawei 2012 Lab</strong>.
     <div style="font-size: 0.95rem; color: #444; margin-top: 6px; text-align: justify;">
@@ -113,5 +95,32 @@ My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vi
   </li>
 
 </ul>
+
+</div>
+
+<div id="publications">
+
+<h1 style="margin-top: 10px; border-bottom: 1px solid #f2f3f3; padding-bottom: 5px; margin-bottom: 10px;">
+📝 Publications
+<span style="font-size: 14px; font-weight: normal; color: #666; margin-left: 8px; vertical-align: middle;">
+(* Equal Contribution, † Corresponding Authors)
+</span>
+</h1>
+
+{% for post in site.publications reversed %}
+  {% include archive-single.html %}
+{% endfor %}
+
+</div>
+
+<div id="Honors_and_Awards">
+
+<!-- <h1 style="margin-top: 10px; border-bottom: 1px solid #f2f3f3; padding-bottom: 5px; margin-bottom: 10px;">🎖 Honors and Awards</h1>
+
+<ul style="list-style-type: disc; padding-left: 20px; font-size: 16px; line-height: 1.6;">
+  <li><strong>AAA</strong>, where.</li>
+  <li><strong>BBB</strong>, where.</li>
+  <li><strong>CCC</strong>, where.</li>
+</ul> -->
 
 </div>
