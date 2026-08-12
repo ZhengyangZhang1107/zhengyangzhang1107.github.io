@@ -82,7 +82,7 @@ My research focuses on <span style="color: #d9534f; font-weight: bold;">3D/4D vi
     <span style="font-style: italic; font-weight: bold;">2026.08 - Present</span>, Generative AI Researcher Intern @
     <strong>MeshyAI</strong>.
     <div style="font-size: 0.95rem; color: #444; margin-top: 6px; text-align: justify;">
-      Working on generative 3D AI.
+      Working on generative 3D Model.
     </div>
   </li>
 
